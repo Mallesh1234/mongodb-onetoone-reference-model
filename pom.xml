@@ -50,7 +50,13 @@
 			<version>4.12</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 	</dependencies>
-
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jfrog-plugins-release</id>
+			<name>plugins-release</name>
+			<url>https://oss.jfrog.org/artifactory/plugins-release</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<build>
 		<plugins>
 			<plugin>
@@ -102,7 +108,48 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.jfrog.buildinfo</groupId>
+				<artifactId>artifactory-maven-plugin</artifactId>
+				<version>3.2.3</version>
+				<executions>
+					<execution>
+						<id>build-info</id>
+						<goals>
+							<goal>publish</goal>
+						</goals>
+						<configuration>
+							<deployProperties>
+								<gradle>awesome</gradle>
+							</deployProperties>
+							<artifactory>
+								<includeEnvVars>true</includeEnvVars>
+								<envVarsExcludePatterns>*password*,*secret*,*key*,*token*,*passphrase*</envVarsExcludePatterns>
+								<timeoutSec>60</timeoutSec>
+							</artifactory>
+							<publisher>
+								<contextUrl>http://192.168.0.100:8081/artifactory</contextUrl>
+								<username>${username}</username>
+								<password>${password}</password>
+								<excludePatterns>*-tests.jar</excludePatterns>
+								<repoKey>spring-libs-release-local</repoKey>
+								<snapshotRepoKey>spring-libs-snapshot-local</snapshotRepoKey>
+							</publisher>
+							<buildInfo>
+								<buildName>plugin-demo</buildName>
+								<buildNumber>${buildnumber}</buildNumber>
+								<buildUrl>http://build-url.org</buildUrl>
+							</buildInfo>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 		</plugins>
+		<finalName>${project.name}-${release}</finalName>
 	</build>
 
 </project>
