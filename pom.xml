@@ -50,6 +50,7 @@
 			<version>4.12</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 	</dependencies>
+	
 	<pluginRepositories>
 		<pluginRepository>
 			<id>jfrog-plugins-release</id>
