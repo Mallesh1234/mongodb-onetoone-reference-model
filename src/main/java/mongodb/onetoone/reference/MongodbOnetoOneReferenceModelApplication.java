@@ -8,6 +8,7 @@ public class MongodbOnetoOneReferenceModelApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MongodbOnetoOneReferenceModelApplication.class, args);
+		
 	}
 
 }
