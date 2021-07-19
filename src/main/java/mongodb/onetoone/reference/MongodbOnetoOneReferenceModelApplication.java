@@ -10,4 +10,5 @@ public class MongodbOnetoOneReferenceModelApplication {
 		SpringApplication.run(MongodbOnetoOneReferenceModelApplication.class, args);
 	}
 	
+	
 }
