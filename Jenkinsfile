@@ -1,15 +1,15 @@
 node {
-tools {
-    maven 'M3'
-  }
+  agent any
   stage('SCM') {
     checkout scm
   }
-  
+   tools {
+    maven 'M3'
+  }
   stage('SonarQube Analysis') {
     def mvn = tool 'Default maven';
     withSonarQubeEnv() {
-      sh "mvn sonar:sonar"
+      sh "${mvn}/bin/mvn sonar:sonar"
     }
   }
 }
