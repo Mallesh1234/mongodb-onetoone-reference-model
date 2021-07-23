@@ -1,5 +1,4 @@
 pipeline {
-    node('Centos8-1Client')
     agent any
     stages {
         stage('Build') {
