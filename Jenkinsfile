@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests=false clean package'
+                sh 'mvn clean verify sonar:sonar'
             }
        }
       }
