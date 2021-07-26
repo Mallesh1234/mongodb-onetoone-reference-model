@@ -29,15 +29,15 @@
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
                     serverId: "ARTIFACTORY_SERVER",
-                    releaseRepo: spring-libs-release-local,
-                    snapshotRepo: spring-libs-snapshot-local
+                    releaseRepo: "spring-libs-release-local",
+                    snapshotRepo: "spring-libs-snapshot-local"
                 )
 
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
                     serverId: "ARTIFACTORY_SERVER",
-                    releaseRepo: spring-libs-release-local,
-                    snapshotRepo: spring-libs-snapshot-local
+                    releaseRepo: "spring-libs-release-local",
+                    snapshotRepo: "spring-libs-snapshot-local"
                 )
             }
         }
