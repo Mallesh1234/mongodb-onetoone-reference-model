@@ -46,7 +46,7 @@
             steps {
                 rtMavenRun (
                     tool: MAVEN_TOOL, // Tool name from Jenkins configuration
-                   // pom: 'maven-examples/maven-example/pom.xml',
+                    pom: './pom.xml',
                     goals: 'clean install',
                     deployerId: "MAVEN_DEPLOYER",
                     resolverId: "MAVEN_RESOLVER"
