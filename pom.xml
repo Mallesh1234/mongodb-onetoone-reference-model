@@ -124,7 +124,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.jfrog.buildinfo</groupId>
 				<artifactId>artifactory-maven-plugin</artifactId>
 				<version>3.2.3</version>
@@ -163,9 +163,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+			</plugin> -->
 		</plugins>
-		<finalName>${project.name}-${release}</finalName>
+		
 	</build>
 
 </project>
