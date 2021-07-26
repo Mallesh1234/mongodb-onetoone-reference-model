@@ -11,6 +11,10 @@
    // }
    pipeline {
     agent any
+    tools {
+        maven 'Maven 3.3.9'
+        //jdk 'jdk8'
+    }
     stages {
         stage ('Clone') {
             steps {
@@ -45,7 +49,7 @@
         stage ('Exec Maven') {
             steps {
                 rtMavenRun (
-                    tool: MAVEN_TOOL, // Tool name from Jenkins configuration
+                    tool: Maven-Home, // Tool name from Jenkins configuration
                     pom: './pom.xml',
                     goals: 'clean install',
                     deployerId: "MAVEN_DEPLOYER",
