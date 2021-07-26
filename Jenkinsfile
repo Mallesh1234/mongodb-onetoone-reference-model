@@ -22,7 +22,7 @@
             steps {
                 rtServer (
                     id: "ARTIFACTORY_SERVER",
-                    url: "192.168.0.100:8081/",
+                    url: "http://192.168.0.100:8081/artifactory",
                     credentialsId: "AKCp8jRGQ4EZxLgd9rzUVtz6j45VeW3Sg9CUERgNa6Kvnu4Z52x567EJumXY5FWCeVqj1iZ3t"
                 )
 
