@@ -9,61 +9,32 @@
        //}
       //}
    // }
-   pipeline {
-    agent any
-    tools {
-        maven 'Maven-Home'
-        //jdk 'jdk8'
+   node {
+    def server
+    def rtMaven = Artifactory.newMavenBuild()
+    def buildInfo
+
+    stage ('Clone') {
+        git url: 'https://github.com/jfrog/project-examples.git'
     }
-    stages {
-        stage ('Clone') {
-            steps {
-                git branch: '2021_07', url: "https://github.com/Mallesh1234/mongodb-onetoone-reference-model.git"
-            }
-        }
 
-        stage ('Artifactory configuration') {
-            steps {
-                rtServer (
-                    id: "ARTIFACTORY_SERVER",
-                    url: "http://192.168.0.100:8081/artifactory",
-                    credentialsId: "AKCp8jRGQ4EZxLgd9rzUVtz6j45VeW3Sg9CUERgNa6Kvnu4Z52x567EJumXY5FWCeVqj1iZ3t"
-                )
+    stage ('Artifactory configuration') {
+        // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
+        server = Artifactory.server jfrog
 
-                rtMavenDeployer (
-                    id: "MAVEN_DEPLOYER",
-                    serverId: "ARTIFACTORY_SERVER",
-                    releaseRepo: "spring-libs-release-local",
-                    snapshotRepo: "spring-libs-snapshot-local"
-                )
+        // Tool name from Jenkins configuration
+        rtMaven.tool = Maven-Home
+        rtMaven.deployer releaseRepo: spring-libs-release-local, snapshotRepo: spring-libs-snapshot-local, server: server
+        rtMaven.resolver releaseRepo: spring-libs-release-local, snapshotRepo: spring-libs-snapshot-local, server: server
+        buildInfo = Artifactory.newBuildInfo()
+    }
 
-                rtMavenResolver (
-                    id: "MAVEN_RESOLVER",
-                    serverId: "ARTIFACTORY_SERVER",
-                    releaseRepo: "spring-libs-release-local",
-                    snapshotRepo: "spring-libs-snapshot-local"
-                )
-            }
-        }
+    stage ('Exec Maven') {
+        rtMaven.run pom: 'maven-examples/maven-example/pom.xml', goals: 'clean install', buildInfo: buildInfo
+    }
 
-        stage ('Exec Maven') {
-            steps {
-                rtMavenRun (
-                    //tool: Maven-Home, // Tool name from Jenkins configuration
-                    pom: 'pom.xml',
-                    goals: 'clean install',
-                    deployerId: "MAVEN_DEPLOYER",
-                    resolverId: "MAVEN_RESOLVER"
-                )
-            }
-        }
-
-        stage ('Publish build info') {
-            steps {
-                rtPublishBuildInfo (
-                    serverId: "ARTIFACTORY_SERVER"
-                )
-            }
-        }
+    stage ('Publish build info') {
+        server.publishBuildInfo buildInfo
     }
 }
+ 
