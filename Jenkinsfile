@@ -20,10 +20,10 @@
 
     stage ('Artifactory configuration') {
         // Obtain an Artifactory server instance, defined in Jenkins --> Manage Jenkins --> Configure System:
-        server = Artifactory.server jfrog
+        server = Artifactory.server 'jfrog'
 
         // Tool name from Jenkins configuration
-        rtMaven.tool = Maven-Home
+        rtMaven.tool = 'Maven-Home'
         rtMaven.deployer releaseRepo: spring-libs-release-local, snapshotRepo: spring-libs-snapshot-local, server: server
         rtMaven.resolver releaseRepo: spring-libs-release-local, snapshotRepo: spring-libs-snapshot-local, server: server
         buildInfo = Artifactory.newBuildInfo()
