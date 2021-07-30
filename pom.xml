@@ -73,13 +73,6 @@
 		</dependency>
 	</dependencies>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>jfrog-plugins-release</id>
-			<name>plugins-release</name>
-			<url>https://oss.jfrog.org/artifactory/plugins-release</url>
-		</pluginRepository>
-	</pluginRepositories>
 	<build>
 		<plugins>
 			<plugin>
