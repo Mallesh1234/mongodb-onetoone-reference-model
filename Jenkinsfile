@@ -25,12 +25,12 @@
         // Tool name from Jenkins configuration
         rtMaven.tool = 'Maven-Home'
         rtMaven.deployer releaseRepo: 'spring-libs-release-local', snapshotRepo: 'spring-libs-snapshot-local', server: server
-        rtMaven.resolver releaseRepo: 'repo', snapshotRepo: 'repo', server: server
+        rtMaven.resolver releaseRepo: 'spring-libs-release-local', snapshotRepo: 'spring-libs-snapshot-local', server: server
         buildInfo = Artifactory.newBuildInfo()
     }
 
     stage ('Exec Maven') {
-        rtMaven.run pom: 'maven-examples/maven-example/pom.xml', goals: 'clean install', buildInfo: buildInfo
+        rtMaven.run pom: './pom.xml', goals: 'clean install', buildInfo: buildInfo
     }
 
     stage ('Publish build info') {
