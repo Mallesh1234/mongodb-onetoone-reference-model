@@ -24,8 +24,8 @@
 
         // Tool name from Jenkins configuration
         rtMaven.tool = 'Maven-Home'
-        rtMaven.deployer releaseRepo: spring-libs-release-local, snapshotRepo: spring-libs-snapshot-local, server: server
-        rtMaven.resolver releaseRepo: spring-libs-release-local, snapshotRepo: spring-libs-snapshot-local, server: server
+        rtMaven.deployer releaseRepo: 'spring-libs-release-local', snapshotRepo: 'spring-libs-snapshot-local', server: server
+        rtMaven.resolver releaseRepo: 'spring-libs-release-local', snapshotRepo: 'spring-libs-snapshot-local', server: server
         buildInfo = Artifactory.newBuildInfo()
     }
 
