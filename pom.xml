@@ -27,6 +27,13 @@
 		<sonar.projectKey>mongodb.onetoone.reference:mongodb-onetoone-reference-model</sonar.projectKey>
 
 	</properties>
+	 <pluginRepositories>
+        <pluginRepository>
+            <id>jfrog-plugins-release</id>
+            <name>plugins-release</name>
+            <url>https://oss.jfrog.org/artifactory/plugins-release</url>
+        </pluginRepository>
+    </pluginRepositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.jacoco</groupId>
