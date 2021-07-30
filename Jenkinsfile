@@ -15,7 +15,7 @@
     def buildInfo
 
     stage ('Clone') {
-        git url: 'https://github.com/jfrog/project-examples.git'
+        git url: 'https://github.com/Mallesh1234/mongodb-onetoone-reference-model.git'
     }
 
     stage ('Artifactory configuration') {
